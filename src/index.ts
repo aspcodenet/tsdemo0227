@@ -8,10 +8,22 @@ dotenv.config();
 const app: Express = express();
 const port = process.env.PORT || 3000;
 
+app.set('view engine', 'ejs')
+
+
 app.get("/allproducts", async (req: Request, res: Response) => {
     const prods = await findAllProducts()
     res.json(prods);
   });
+
+
+  app.get("/products", async (req: Request, res: Response) => {
+    const allProducts = await findAllProducts()
+    res.render('pages/index',{
+      allProducts
+  });
+});
+
   
 
 
@@ -21,7 +33,7 @@ app.get("/test", (req: Request, res: Response) => {
   
  
 app.get("/", (req: Request, res: Response) => {
-  res.send("Express + TypeScript Server");
+  res.send("<html><body><h1>dsadsa</h1></body></html>");
 });
  
 app.listen(port, async () => {
