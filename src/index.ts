@@ -1,7 +1,8 @@
 import express, { Express, Request, Response } from "express";
 import  { Message, getAllMessages } from "./models/message";
 import dotenv from "dotenv";
-import { findAllProducts } from "./database/product";
+import { createTable, findAllProducts } from "./database/product";
+import { create } from "domain";
  
 dotenv.config();
  
@@ -37,5 +38,6 @@ app.get("/", (req: Request, res: Response) => {
 });
  
 app.listen(port, async () => {
+  createTable();
   console.log(`[server]: Server is running at http://localhost:${port}`);
 }); 

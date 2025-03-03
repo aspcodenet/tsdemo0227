@@ -12,3 +12,10 @@ export async function findAllProducts() : Promise<Product[]>{
     const [rows] = await conn.query<Product[]>("SELECT ProductID,ProductName,UnitPrice FROM Products", [])
     return rows
 }
+
+export async function createTable(){
+    const conn = await connection;
+    await conn.query("CREATE TABLE IF NOT EXISTS Products (ProductID INT PRIMARY KEY AUTO_INCREMENT, ProductName VARCHAR(255), UnitPrice FLOAT)", [])
+}
+
+
